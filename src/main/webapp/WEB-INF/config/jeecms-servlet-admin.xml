@@ -47,8 +47,8 @@
 	</bean>
 	<bean id="adminContextInterceptor" class="com.jeecms.cms.web.AdminContextInterceptor">
 		<property name="auth" value="true"/>
-		<property name="loginUrl" value="/jeeadmin/jeecms/login.do"/>
-		<property name="returnUrl" value="/jeeadmin/jeecms/index.do"/>
+		<property name="loginUrl" value="/console/login.do"/>
+		<property name="returnUrl" value="/console/index.do"/>
 		<property name="excludeUrls">
 			<list>
 				<value>/login.do</value>
@@ -88,7 +88,7 @@
 		<property name="freemarkerVariables">
 			<map>
 				<!--在FCK编辑器中需要用到appBase，以确定connector路径。-->
-				<entry key="appBase" value="/jeeadmin/jeecms"/>
+				<entry key="appBase" value="/console"/>
 				<!--后台管理权限控制-->
 				<entry key="cms_perm" value-ref="cms_perm"/>
 				<entry key="text_cut" value-ref="text_cut"/>
