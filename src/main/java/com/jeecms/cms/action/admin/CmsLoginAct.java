@@ -54,7 +54,7 @@ public class CmsLoginAct {
 			Authentication auth = authMng.retrieve(authId);
 			// 存在认证信息，且未过期
 			if (auth != null) {
-				return "index";
+				return "redirect:index.do";
 			}
 		}
 		writeCookieErrorRemaining(null, request, response, model);
