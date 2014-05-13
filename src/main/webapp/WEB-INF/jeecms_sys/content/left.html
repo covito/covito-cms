@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>jeecms-left</title>
+<script src="${base}/Framework/Main.js" ></script>
 <#include "/jeecms_sys/head.html"/>
 <script type="text/javascript">
 $(function(){
@@ -13,22 +14,24 @@ $(function(){
 });
 </script>
 </head>
-<body class="lbody">
-<div class="left">
-	<div class="fresh">
-		 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-	          <tr>
-	            <td height="35" align="center"><img src="${base}/res/jeecms/img/admin/refresh-icon.png" />&nbsp;&nbsp;<a href="javascript:location.href=location.href"><@s.m "global.refresh"/></a></td>
-	           	<@cms_perm url="/type/v_list.do">	
-	            <td width="2" height="35" valign="middle"><img src="${base}/res/jeecms/img/admin/left-line.png" /></td>
-	            <td height="35" align="center"><img src="${base}/res/jeecms/img/admin/content-type.png" />&nbsp;&nbsp;<a href="../type/v_list.do" target="rightFrame"><@s.m "contentType.function"/></a></td>
-	      	 	</@cms_perm>
-	      	 	<@cms_perm url="/topic/v_list.do">
-	      	 	<td width="2" height="35" valign="middle"><img src="${base}/res/jeecms/img/admin/left-line.png" /></td>
-	            <td height="35" align="center"><img src="${base}/res/jeecms/img/admin/topic.png" />&nbsp;&nbsp;<a href="../topic/v_list.do" target="rightFrame"><@s.m "cmsTopic.function"/></a></td>
-	      	 	</@cms_perm>
-	      	 </tr>
-	     </table>
+<body>
+<div class="container">
+	<div class="btn-toolbar" role="toolbar">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default btn-sm" onclick="javascript:location.href=location.href">
+			  <span class="glyphicon glyphicon-refresh"></span> <@s.m 'global.refresh'/>
+			</button>
+           	<@cms_perm url="/type/v_list.do">
+           	<button type="button" class="btn btn-default btn-sm" onclick="javascript:window.open('../type/v_list.do', 'rightFrame');">
+		  		<span class="glyphicon glyphicon-list"></span> <@s.m "contentType.function"/>
+			</button>	
+      	 	</@cms_perm>
+      	 	<@cms_perm url="/topic/v_list.do">
+      	 	<button type="button" class="btn btn-default btn-sm" onclick="javascript:window.open('../topic/v_list.do', 'rightFrame');">
+		  		<span class="glyphicon glyphicon-list"></span> <@s.m "cmsTopic.function"/>
+			</button>
+      	 	</@cms_perm>
+		</div>
 	</div>
 </div>
 <ul id="browser" class="filetree"></ul>
