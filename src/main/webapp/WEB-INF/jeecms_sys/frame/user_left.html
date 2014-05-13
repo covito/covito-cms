@@ -3,46 +3,52 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>jeecms-left</title>
+<script src="${base}/Framework/Main.js" ></script>
 <#include "/jeecms_sys/head.html"/>
 <script type="text/javascript">
 $(function(){
 	Cms.lmenu('lmenu');
 });
+function HoverLi(id){
+	$("a").each(function(){
+		$(this).removeClass("active");
+	});
+	$(id).addClass("active");
+}
 </script>
 </head>
 <body class="lbody">
 <div class="left">
-<#include "/jeecms_sys/date.html"/>
-     <ul class="w-lful">
-		<li><a href="user_right.do" target="rightFrame"><@s.m "global.admin.index"/></a></li>
+     <div class="nav list-group">
+		<!-- <a href="user_right.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "global.admin.index"/></a> -->
 		<@cms_perm url="/member/v_list.do">
-		<li><a href="../member/v_list.do" target="rightFrame"><@s.m "cmsMember.function"/></a></li>
+		<a href="../member/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsMember.function"/></a>
 		</@cms_perm>
 		<@cms_perm url="/group/v_list.do">
-		<li><a href="../group/v_list.do" target="rightFrame"><@s.m "cmsGroup.function"/></a></li>
+		<a href="../group/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsGroup.function"/></a>
 		</@cms_perm>
 		<@cms_perm url="/admin_global/v_list.do">
-		<li><a href="../admin_global/v_list.do" target="rightFrame"><@s.m "cmsAdminGlobal.function"/></a></li>
+		<a href="../admin_global/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsAdminGlobal.function"/></a>
 		</@cms_perm>
 		<@cms_perm url="/admin_local/v_list.do">
-		<li><a href="../admin_local/v_list.do" target="rightFrame"><@s.m "cmsAdminLocal.function"/></a></li>
+		<a href="../admin_local/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsAdminLocal.function"/></a>
 		</@cms_perm>
 		<@cms_perm url="/role/v_list.do">
-		<li><a href="../role/v_list.do" target="rightFrame"><@s.m "cmsRole.function"/></a></li>
+		<a href="../role/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsRole.function"/></a>
 		</@cms_perm>
 		<@cms_perm url="/log/v_list_operating.do">
-		<li><a href="../log/v_list_operating.do" target="rightFrame"><@s.m "cmsLog.function.operating"/></a></li>
+		<a href="../log/v_list_operating.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsLog.function.operating"/></a>
 		</@cms_perm>
 		<@cms_perm url="/log/v_list_login_success.do">
-		<li><a href="../log/v_list_login_success.do" target="rightFrame"><@s.m "cmsLog.function.loginSuccess"/></a></li>
+		<a href="../log/v_list_login_success.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsLog.function.loginSuccess"/></a>
 		</@cms_perm>
 		<@cms_perm url="/log/v_list_login_failure.do">
-		<li><a href="../log/v_list_login_failure.do" target="rightFrame"><@s.m "cmsLog.function.loginFailure"/></a></li>
+		<a href="../log/v_list_login_failure.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsLog.function.loginFailure"/></a>
 		</@cms_perm>
 	    <@cms_perm url="/message/v_list.do">
-		<li><a href="../message/v_list.do" target="rightFrame"><@s.m "cmsMessage.function"/> </a></li>
+		<a href="../message/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsMessage.function"/> </a>
 		</@cms_perm>
-     </ul>
+     </div>
 </div>
 </body>
 </html>

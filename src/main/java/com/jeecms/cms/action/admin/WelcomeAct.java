@@ -20,10 +20,18 @@ import com.jeecms.cms.web.CmsUtils;
 @Controller
 public class WelcomeAct {
 	@RequestMapping("/index.do")
-	public String index() {
+	public String index(HttpServletRequest request, ModelMap model) {
+		// 需要获得站点列表
+		List<CmsSite> siteList = cmsSiteMng.getList();
+		CmsSite site = CmsUtils.getSite(request);
+		CmsUser user = CmsUtils.getUser(request);
+		model.addAttribute("siteList", siteList);
+		model.addAttribute("site", site);
+		model.addAttribute("siteParam", AdminContextInterceptor.SITE_PARAM);
+		model.addAttribute("user", user);
 		return "index";
 	}
-	
+
 	@RequestMapping("/map.do")
 	public String map() {
 		return "map";
@@ -72,7 +80,8 @@ public class WelcomeAct {
 		model.addAttribute("useableMemory", useableMemory);
 		model.addAttribute("version", version);
 		model.addAttribute("user", user);
-		model.addAttribute("flowMap", cmsStatisticSvc.getWelcomeSiteFlowData(site.getId()));
+		model.addAttribute("flowMap",
+				cmsStatisticSvc.getWelcomeSiteFlowData(site.getId()));
 		return "right";
 	}
 

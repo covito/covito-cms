@@ -1,87 +1,231 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>JEECMS Administrator's Control Panel</title>
-<#include "/jeecms_sys/head.html"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CMS管理控制台</title>
+<script src="${base}/Framework/Main.js"></script>
 <script type="text/javascript">
-if(top!=this) {
-	top.location=this.location;
-}
-$(function() {
-	$("#username").focus();
-	$("#jvForm").validate();
-});
+	if (top != this) {
+		top.location = this.location;
+	}
+	$(function() {
+		$("#username").focus();
+	});
 </script>
 <style type="text/css">
-body{margin:0;padding:0;font-size:12px;background:url(${base}/res/jeecms/img/login/bg.jpg) top repeat-x;}
-.input{width:150px;height:17px;border-top:1px solid #404040;border-left:1px solid #404040;border-right:1px solid #D4D0C8;border-bottom:1px solid #D4D0C8;}
+html,body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: #FCFCFC;
+}
+
+.navbar {
+	background-color: #438EB9;
+	border-radius: 0;
+	border-width: 0;
+}
+
+.navbar-brand {
+	color: #fff !important;
+}
+
+.navbar-brand img {
+	position: relative;
+	top: -4px;
+	width: 45px;
+	height: 30px;
+}
+
+.login-container {
+	margin-top: 8%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 16%;
+	min-width: 250px;
+}
+
+.login-container .title {
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.login-container .form-group {
+	position: relative;
+	margin-bottom: 25px;
+}
+
+.login-container .form-group i {
+	position: absolute;
+	left: 8px;
+	top: 8px;
+	font-size: 16px;
+}
+
+.login-container input {
+	padding-left: 32px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.login-container .btn-primary,.login-container .btn-primary:focus,.login-container .btn-primary:visited
+	{
+	font-size: 16px;
+	letter-spacing: 10px;
+	background-color: #438EB9;
+	border-color: #438EB9;
+}
+
+.login-container .btn-primary:hover,.login-container .btn-primary:active
+	{
+	opacity: .9;
+	filter: ALPHA(opacity =     90);
+}
+
+.checkerbox {
+	position: relative;
+	display: inline-block;
+	top: -1px;
+	color: #32a3ce;
+	margin-right: 10px;
+	background-color: #fafafa;
+	border: 1px solid #c8c8c8;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	border-radius: 0;
+	text-align: center;
+	vertical-align: middle;
+	height: 1.2em;
+	line-height: 1.2em;
+	width: 1.3em;
+}
+
+.checkerbox.checked:before {
+	display: inline-block;
+	font-family: 'Glyphicons Halflings';
+	font-style: normal;
+	font-weight: 400;
+	content: "\e013";
+	background-color: #f5f8fc;
+	border-color: #adb8c0;
+}
 </style>
 </head>
 <body>
-<form id="jvForm" action="login.do" method="post">
-<#if returnUrl??><input type="hidden" name="returnUrl" value="${returnUrl}"/></#if>
-<#if processUrl??><input type="hidden" name="processUrl" value="${processUrl}"/></#if>
-<table width="750" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td height="200">&nbsp;</td>
-  </tr>
-  <tr>
-    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td width="423" height="280" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td><img src="${base}/res/jeecms/img/login/ltop.jpg" /></td>
-              </tr>
-              <tr>
-                <td><img src="${base}/res/jeecms/img/login/llogo.jpg" /></td>
-              </tr>
-            </table></td>
-          <td width="40" align="center" valign="bottom"><img src="${base}/res/jeecms/img/login/line.jpg" width="23" height="232" /></td>
-          <td valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td height="90" align="center" valign="bottom"><img src="${base}/res/jeecms/img/login/ltitle.jpg" /></td>
-              </tr>
-              <tr>
-                <td>
-                <div>
-<#if errors??>
-	<ul>
-	<#list errors as error><li>${error}</li></#list>
-	</ul>
-</#if>
-                </div>
-                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="5">
-                    <tr>
-                      <td width="91" height="40" align="right"><strong> <@s.m "login.username"/>：</strong></td>
-                      <td width="211"><input type="input" id="username" name="username" vld="{required:true}" maxlength="100" class="input"/></td>
-                    </tr>
-                    <tr>
-                      <td height="40" align="right"><strong><@s.m "login.password"/>：</strong></td>
-                      <td><input name="password" type="password" id="password" maxlength="32" vld="{required:true}" class="input"/></td>
-                    </tr>
-                    <#if errorRemaining?? && errorRemaining<=0>
-                    <tr>
-                    	<td colspan="2" align="center"><img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1"/></td>
-                    </tr>
-                    <tr>
-                      <td height="40" align="right"><strong><@s.m "login.captcha"/>：</strong></td>
-                      <td><input name="captcha" type="text" id="captcha" vld="{required:true}" class="input"/></td>
-                    </tr>
-                    </#if>
-                    <tr>
-                      <td height="40" colspan="2" align="center">
-					    <input type="image" src="${base}/res/jeecms/img/login/login.jpg" name="submit" />
-                        &nbsp; &nbsp; <img name="reg" style="cursor: pointer" src="${base}/res/jeecms/img/login/reset.jpg" onclick="document.forms[0].reset()" /> </td>
-                    </tr>
-                  </table></td>
-              </tr>
-            </table></td>
-        </tr>
-      </table></td>
-  </tr>
-</table>
-</form>
-<#include "/common/alert_message.html"/>
+	<div class="navbar navbar-default">
+		<a class="navbar-brand" >
+			<img src="${base}/Framework/Images/global.logo.png" /> CMS管理控制台
+		</a>
+		<div class="navbar-text navbar-right">
+			
+		</div>
+	</div>
+	<div class="login-container">
+		<h3 class="title">后台管理用户登录</h3>
+		<div>
+		<#if errors??>
+			<ul>
+			<#list errors as error><li style="color:red">${error}</li></#list>
+			</ul>
+		</#if>
+        </div>
+		<form class="form-horizontal"
+			action="login.do" id="jvForm"
+			method="post">
+			<div class="form-group">
+				<input type="text" class="form-control" id="username" name="username" placeholder="<@s.m 'login.username'/>" /> 
+				<i class="glyphicon glyphicon-user"></i>
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" id="password" name="password" placeholder="<@s.m 'login.password'/>" /> 
+				<i class="glyphicon glyphicon-lock"></i>
+			</div>
+			<#if errorRemaining?? && errorRemaining<=0>
+			<div class="form-group">
+				<input type="text" class="form-control" id="captcha" name="captcha" placeholder="<@s.m 'login.captcha'/>" />
+				<img src="${base}/captcha.svl" onclick="this.src='${base}/captcha.svl?d='+new Date()*1"/> 
+				<i class="glyphicon glyphicon-picture"></i>
+			</div>
+			</#if>
+			<div class="form-group" style="font-size: 14px; height: 1.2em; line-height: 1.2em; margin-left: 25px;">
+				<div class="checkerbox" id="rememberBtn"></div>
+				记住用户名和密码
+			</div>
+			<div class="form-group">
+				<button id="loginBtn" type="button" class="btn btn-primary btn-block">登录</button>
+			</div>
+		</form>
+	</div>
+	<script>
+		$(function() {
+			var userNameElement = $("#username");
+			var passwordElement = $("#password");
+			var rememberBtn = $('#rememberBtn').on('click', function(){
+				var $this = $(this);
+				$this.toggleClass('checked');
+			});
+			var cookieArr = document.cookie.split(';');
+			for(var i=0, j=cookieArr.length; i<j; i++){
+				var cookie = cookieArr[i].split('=');
+				cookie[0] = cookie[0].replace(/(^\s*)|(\s*$)/g,"")
+				if(cookie[0] == 'isRemember'){
+					rememberBtn.click();
+				}else if(cookie[0] == 'username'){
+					userNameElement.val(cookie[1]);
+				}else if(cookie[0] == 'password'){
+					passwordElement.val(cookie[1]);
+				}
+			}
+			$('[data-toggle="tooltip"]').tooltip();
+			var form = $('#jvForm');
+			var searchArr = location.search.substr(1, location.search.length).split('&');
+			var condition = {};
+			for(var i=0, j=searchArr.length; i<j; i++){
+				var tempArr = searchArr[i].split('=');
+				condition[tempArr[0]] = tempArr[1];
+			}
+			if(condition.j_username && condition.j_password){
+				userNameElement.val(condition.j_username);
+				passwordElement.val(condition.j_password);
+				form.submit();
+			}
+			var btnLogin = $('#loginBtn');
+			$('body').keydown(function(e) {
+				if (e.keyCode == 13) {
+					dologin();
+				}
+			});
+			btnLogin.on('click', function() {
+				dologin();
+			});
+			var dologin = function() {
+				var username = userNameElement.val();
+				var password = passwordElement.val();
+				if (!Validation.notNull($('body'), userNameElement, username,
+						'用户名不能为空')) {
+					return false;
+				}
+				if (!Validation.notNull($('body'), passwordElement, password,
+						'密码不能为空')) {
+					return false;
+				}
+				if(rememberBtn.hasClass('checked')){
+					document.cookie = 'isRemember='+escape('true');
+					document.cookie = 'username='+escape(username);
+					document.cookie = 'password='+escape(password);
+				}else{
+					var exp = new Date();
+    				exp.setTime(exp.getTime() - 1);
+					document.cookie = 'isRemember='+escape('')+';expires='+exp.toGMTString();
+					document.cookie = 'username='+escape('')+';expires='+exp.toGMTString();
+					document.cookie = 'password='+escape('')+';expires='+exp.toGMTString();
+				}
+				btnLogin.attr('disabled', 'disabled').html('正在登录...');
+				form.submit();
+			};
+		});
+	</script>
 </body>
 </html>

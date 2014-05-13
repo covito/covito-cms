@@ -1,12 +1,145 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>jeecms-main</title>
-</head>
-<frameset rows="72,*" frameborder="0" border="0" framespacing="0">
-	<frame src="top.do" name="topFrame" noresize="noresize" id="leftFrame" />
-	<frame src="main.do" name="mainFrame" id="mainFrame" />
-</frameset>
-<noframes><body></body></noframes>
+	<head>
+		<title>CMS管理控制台</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="${base}/Framework/Main.js" ></script>
+		<style type="text/css">
+			#main {padding:0;margin:0;} #main .container-fluid{padding:0 7px 0 10px;}
+			#header {margin:0 0 10px;position:static;} #header li {font-size:14px;_font-size:12px;}
+			#header .navbar-brand {font-family:Helvetica, Georgia, Arial, sans-serif, 黑体;font-size:20px;padding-left:33px;}
+			#footer {margin:8px 0 0 0;padding:3px 0 0 0;font-size:11px;text-align:center;border-top:2px solid #0663A2;}
+			#footer, #footer a {color:#999;} 
+			html,body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				background-color: #FCFCFC;
+			}
+		</style>
+		<script type="text/javascript">
+		function g(o){
+			return document.getElementById(o);
+		}
+		function HoverLi(id){
+			$("li[id^='tb_']").each(function(){
+				$(this).removeClass("active");
+			});
+			$("#tb_"+id).addClass("active");
+		}
+		function countUnreadMsg(){
+			 $.post("message/v_countUnreadMsg.do", {
+				}, function(data) {
+					if(data.result){
+						 $("#countDiv").html(""+data.count+"");
+					}else{
+						alert("<@s.m 'cmsMessage.noLogin'/>");
+					}
+				}, "json");
+			 setTimeout( "countUnreadMsg() ",1000*60*10);    
+		}
+		$(function(){
+			$('a').bind("focus", function(){   
+			    $(this).blur();   
+			}); 
+			countUnreadMsg();
+		});
+		setTimeout( "countUnreadMsg() ",1000*60*10); 
+		function mapDialog(){
+			var result=window.showModalDialog("map.do","","dialogHeight:600px;dialogWidth:800px;center:yes;resizable: yes;");
+			if(result!=null){
+				var href=result.split(";")[0];
+				var target=result.split(";")[1];
+				if(target=="rightFrame"){
+						window.parent.mainFrame.document.getElementById(target).src=href;
+						var rightFrameSrc=window.parent.mainFrame.document.getElementById(target).src;
+						 if(rightFrameSrc.indexOf("frame")>=0){
+							window.parent.mainFrame.document.getElementById(target).src=rightFrameSrc.split("frame/")[0]+rightFrameSrc.split("frame/")[1];
+							}
+					}
+				else {
+					 	window.parent.document.getElementById(target).src=href;
+					}
+				}
+		}
+		</script>
+	</head>
+	<body>
+	<div id="main">
+		<div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">
+	      <div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="right.do" target="rightFrame">CMS管理控制台</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="menu active" id="tb_11" onclick="HoverLi(11);"><a href="main.do" target="mainFrame"><@s.m "global.admin.home"/></a></li>
+					<@cms_perm url="/frame/channel_main.do">			
+					<li class="menu" id="tb_12" onclick="HoverLi(12);"><a href="frame/channel_main.do" target="mainFrame"><@s.m "cms.function.channel"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/content_main.do">
+					<li class="menu" id="tb_13" onclick="HoverLi(13);"><a href="frame/content_main.do" target="mainFrame"><@s.m "cms.function.content"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/template_main.do">
+					<li class="menu" id="tb_14" onclick="HoverLi(14);"><a href="frame/template_main.do" target="mainFrame"><@s.m "cms.function.template"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/resource_main.do">
+					<li class="menu" id="tb_15" onclick="HoverLi(15);"><a href="frame/resource_main.do" target="mainFrame"><@s.m "cms.function.resource"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/assistant_main.do">
+					<li class="menu" id="tb_16" onclick="HoverLi(16);"><a href="frame/assistant_main.do" target="mainFrame"><@s.m "cms.function.assistant"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/maintain_main.do">
+					<li class="menu" id="tb_17" onclick="HoverLi(17);"><a href="frame/maintain_main.do" target="mainFrame"><@s.m "cms.function.maintain"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/generate_main.do">
+					<li class="menu" id="tb_18" onclick="HoverLi(18);"><a href="frame/generate_main.do" target="mainFrame"><@s.m "cms.function.generate"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/user_main.do">
+					<li class="menu" id="tb_19" onclick="HoverLi(19);"><a href="frame/user_main.do" target="mainFrame"><@s.m "cms.function.user"/></a></li>
+					</@cms_perm>
+					<@cms_perm url="/frame/config_main.do">
+					<li class="menu" id="tb_110" onclick="HoverLi(110);"><a href="frame/config_main.do" target="mainFrame"><@s.m "cms.function.config"/></a></li>
+					</@cms_perm>
+				</ul>
+				<ul class="nav navbar-nav pull-right">
+					 <li><a href="/" target="_blank" title="访问网站主页"><i class="glyphicon glyphicon-home"></i></a></li>
+				  	 <li id="themeSwitch" class="dropdown">
+				       	<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="网站切换"><i class="glyphicon glyphicon-th-large"></i></a>
+					    <ul class="dropdown-menu">
+					    	<#list siteList as s>
+			              	<li><a href="#" onclick="location='index.do?${siteParam}=${s.id}'">${s.name}</a></li>
+			              	</#list>
+					    </ul>
+				     </li>
+				  	 <li class="dropdown">
+					    <a class="dropdown-toggle" data-toggle="dropdown" href="#" title="个人信息"><@s.ma code="global.admin.welcome" args=[user.username]/></a>
+					    <ul class="dropdown-menu">
+					      <li><a href="personal/v_profile.do" target="rightFrame"><i class="glyphicon glyphicon-user"></i>&nbsp; 个人信息</a></li>
+					    </ul>
+				  	 </li>
+				  	 <li><a href="message/v_list.do" target="rightFrame" title="未读消息"><i class="glyphicon glyphicon-envelope"></i><span id="countDiv" class="badge" style="margin-left: 2px"></span></a></li>
+				  	 <li><a href="logout.do?returnUrl=index.do" title="退出登录" ><@s.m "global.admin.logout"/></a></li>
+				  	 <li>&nbsp;</li>
+	            </ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	    </div>
+	    <div class="container-fluid">
+			<div id="content" class="row-fluid">
+				<iframe src="main.do" name="mainFrame" id="mainFrame" style="overflow:visible;" scrolling="yes" frameborder="no" width="100%" height="600"/>
+			</div>
+		    <div id="footer" class="row-fluid">
+	           Copyright &copy; 2012-2014 CMS内容管理系统
+			</div>
+		</div>
+	</div>
+	</body>
 </html>

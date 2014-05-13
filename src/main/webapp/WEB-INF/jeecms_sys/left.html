@@ -2,65 +2,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>jeecms-left</title>
+<script src="${base}/Framework/Main.js" ></script>
+<title>left</title>
 <#include "/jeecms_sys/head.html"/>
 <script type="text/javascript">
 $(function(){
 	Cms.lmenu('lmenu');
 });
+function HoverLi(id){
+	$("a").each(function(){
+		$(this).removeClass("active");
+	});
+	$(id).addClass("active");
+}
 </script>
 </head>
 <body class="lbody">
 <div class="left">
-<#include "/jeecms_sys/date.html"/>
-     <ul class="w-lful">
-     	<!-- <li><a href="right.do" target="rightFrame"><@s.m "global.admin.index"/></a></li> -->
-		<@cms_perm url="/personal/v_profile.do">
-		<li><a href="personal/v_profile.do" target="rightFrame"><@s.m "cmsPersonal.function"/></a></li>
-		</@cms_perm>
+     <div class="nav list-group">
+     	<!-- <a href="right.do" target="rightFrame" class="list-group-item"><@s.m "global.admin.index"/></a> -->
+		<!-- <@cms_perm url="/personal/v_profile.do">
+		<a href="personal/v_profile.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "cmsPersonal.function"/></a>
+		</@cms_perm> -->
 		<@cms_perm url="/statistic_member/v_list.do">
-		<li><a href="statistic_member/v_list.do" target="rightFrame"><@s.m "statistic.function.member"/></a></li>
+		<a href="statistic_member/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.member"/></a>
 		</@cms_perm>
 		<@cms_perm url="/statistic_content/v_list.do">
-		<li><a href="statistic_content/v_list.do" target="rightFrame"><@s.m "statistic.function.content"/></a></li>
+		<a href="statistic_content/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.content"/></a>
 		</@cms_perm>
 		<@cms_perm url="/statistic_comment/v_list.do">
-		<li><a href="statistic_comment/v_list.do" target="rightFrame"><@s.m "statistic.function.comment"/></a></li>
+		<a href="statistic_comment/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.comment"/></a>
 		</@cms_perm>
 		<@cms_perm url="/statistic_guestbook/v_list.do">
-		<li><a href="statistic_guestbook/v_list.do" target="rightFrame"><@s.m "statistic.function.guestbook"/></a></li>
+		<a href="statistic_guestbook/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.guestbook"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_pv/v_list.do">
-		<li><a href="flow_pv/v_list.do" target="rightFrame"><@s.m "statistic.function.pv"/></a></li>
+		<a href="flow_pv/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.pv"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_uniqueIp/v_list.do">
-		<li><a href="flow_uniqueIp/v_list.do" target="rightFrame"><@s.m "statistic.function.uniqueIp"/></a></li>
+		<a href="flow_uniqueIp/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.uniqueIp"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_uniqueVisitor/v_list.do">
-		<li><a href="flow_uniqueVisitor/v_list.do" target="rightFrame"><@s.m "statistic.function.uniqueVisitor"/></a></li>
+		<a href="flow_uniqueVisitor/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.uniqueVisitor"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_avgViews/v_list.do">
-		<li><a href="flow_avgViews/v_list.do" target="rightFrame"><@s.m "statistic.function.avgViews"/></a></li>
+		<a href="flow_avgViews/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.avgViews"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_refererWebSite/v_list.do">
-		<li><a href="flow_refererWebSite/v_list.do" target="rightFrame"><@s.m "statistic.function.refererWebSite"/></a></li>
+		<a href="flow_refererWebSite/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.refererWebSite"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_refererPage/v_list.do">
-		<li><a href="flow_refererPage/v_list.do" target="rightFrame"><@s.m "statistic.function.refererPage"/></a></li>
+		<a href="flow_refererPage/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.refererPage"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_refererKeyword/v_list.do">
-		<li><a href="flow_refererKeyword/v_list.do" target="rightFrame"><@s.m "statistic.function.refererKeyword"/></a></li>
+		<a href="flow_refererKeyword/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.refererKeyword"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_accessPage/v_list.do">
-		<li><a href="flow_accessPage/v_list.do" target="rightFrame"><@s.m "statistic.function.accessPage"/></a></li>
+		<a href="flow_accessPage/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.accessPage"/></a>
 		</@cms_perm>
 		<@cms_perm url="/flow_area/v_list.do">
-		<li><a href="flow_area/v_list.do" target="rightFrame"><@s.m "statistic.function.area"/></a></li>
+		<a href="flow_area/v_list.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.area"/></a>
 		</@cms_perm>
 		<@cms_perm url="/statistic_flow/v_init.do">
-		<li><a href="statistic_flow/v_init.do" target="rightFrame"><@s.m "statistic.function.flowinit"/></a></li>
+		<a href="statistic_flow/v_init.do" target="rightFrame" class="list-group-item" onclick="HoverLi(this)"><@s.m "statistic.function.flowinit"/></a>
     	</@cms_perm>
-     </ul>
+     </div>
 </div>
 </body>
 </html>
